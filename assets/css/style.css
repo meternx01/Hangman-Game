@@ -1,0 +1,45 @@
+/*.backRed
+{
+	background-color: #FF0000;
+	height:100%;
+}
+
+.backBlue
+{
+	background-color: #0000FF;
+	height:100%;
+}*/
+
+.container {
+  background: linear-gradient(
+    to right, 
+    #0000FF 0%, 
+    #FFFFFF 30%, 
+    #FFFFFF 70%, 
+    #FF0000 100%
+  );
+  height: 100%;
+  width: 100%;
+  display:table;
+  box-sizing: border-box;
+}
+
+html,body,.container {
+    height:100%;
+}
+
+.row {
+    height: 100%;
+    display: table-row;
+}
+
+.row .no-float {
+  display: table-cell;
+  float: none;
+}
+
+hr{
+	color: #dddddd;
+	background:#dddddd;
+	height:3px;
+}
