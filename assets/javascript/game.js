@@ -54,7 +54,39 @@ function newGame()
 	//reset the wrong tolarance to 0
 	incorrect = 0;
 	//display
-	document.getElementById("output").innerHTML= puzzleBoard;
+	displayOutput("Begin");
+}
+
+function displayOutput(messageType)
+{
+	var outDiv = document.getElementById("output");
+	outDiv.innerHTML = "";
+	var newStuff;
+	if(messageType == "Begin")
+	{
+		newStuff = document.createElement("h1");
+		newStuff.innerHTML = "Game Started!"
+		outDiv.appendChild(newStuff);
+	}
+	if(messageType == "Correct")
+	{
+		newStuff = document.createElement("h1");
+		newStuff.innerHTML = "Correct!"
+		outDiv.appendChild(newStuff);
+	}
+	if(messageType == "Incorrect")
+	{
+		newStuff = document.createElement("h1");
+		newStuff.innerHTML = "That Letter is not in the Word!"
+		outDiv.appendChild(newStuff);
+	}
+	
+	newStuff = document.createElement("h2");
+	newStuff.innerHTML = "Guess This Word"
+	outDiv.appendChild(newStuff);
+	newStuff = document.createElement("h2");
+	newStuff.innerHTML = puzzleBoard.join("  ");
+	outDiv.appendChild(newStuff);
 }
 
 /*function guess(event)
@@ -108,7 +140,7 @@ document.onkeyup = function(event){
 					{
 						puzzleBoard[i]=guessLetter;		//update the puzzleBoard}
 					}
-					console.log(guessLetter + " is correct");					
+					displayOutput("Correct");
 				}
 			}
 			else
@@ -116,7 +148,7 @@ document.onkeyup = function(event){
 				incorrect++;
 				if(incorrect>=8)
 					incorrect = incorrect;	//end game PLACEHOLDER FOR THE IF
-				console.log(guessLetter + " is incorrect " + incorrect);
+				displayOutput("Incorrect");
 			}
 			guesses.push(guessLetter);	
 			console.log(puzzleBoard + " " + guesses);
