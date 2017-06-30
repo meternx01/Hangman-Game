@@ -47,7 +47,7 @@ function newGame() {
 
 // displayOutput is the only function that writes HTML to the page
 // the argument is a string for Begin (Start a new game) Correct (Letter is in the puzzle)
-// or Incorrect (Letter is not in puzzle)
+// or Incorrect (Letter is not in puzzle) [GameOver display an image] 
 // http://cdn-9chat-fun.9cache.com/media/photo/amZaklpA3_480w_v1.jpg
 function displayOutput(messageType) {
 	// get the ID from the HTML
@@ -91,6 +91,16 @@ function displayOutput(messageType) {
 		newStuff.innerHTML = guesses.join("  ");
 		outDiv.appendChild(newStuff);
 	}
+	/*  COULDNT GET TO WORK
+	if(messageType == "GameOver")
+	{
+		outDiv.innerHTML = "";
+		newStuff = document.createElement("img");
+		newStuff.src = "http://cdn-9chat-fun.9cache.com/media/photo/amZaklpA3_480w_v1.jpg";
+		newStuff.addAttribute("class", "img-responsive");
+		outDiv.innerHTML(newstuff);
+	}
+	*/
 }
 
 /*function guess(event)
@@ -138,7 +148,7 @@ document.onkeyup = function (event) {
 	var letters = /^[A-Z]+$/;
 	if (guessLetter.match(letters)) {	// it's a letter - continue to check
 		// if has been already guessed
-		if (!guessed(guessLetter)) {
+	if (!guessed(guessLetter)) {
 			//check further
 			if (puzzleWord.search(guessLetter) !== -1) //if the guess is in the puzzle (at least 1 time)
 			{
@@ -157,12 +167,14 @@ document.onkeyup = function (event) {
 					guesses.push(guessLetter);	// Place the letter into the guessed list
 				} else {	// Game over condition
 					alert("You need to look at a map of Texas....");
+					displayOutput("GameOver");
 					startGame();	// Restart the game
 				}
 
 			}
 			// check if game is complete - Win
 			if (!puzzleBoard.some(hasBlanks)) { 	// If the board does NOT have blanks remaining
+				//displayOutput("GameOver");
 				setTimeout(function(){alert("You Won The Internets!")},500);
 				startGame();
 			}
